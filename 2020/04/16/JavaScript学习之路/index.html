@@ -312,7 +312,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/JS/" rel="tag"># JS</a>
+              <a href="/tags/JS/" rel="tag"><i class="fa fa-tag"></i># JS</a>
           </div>
 
         
@@ -340,6 +340,7 @@
 
           </div>
           
+    <div class="comments" id="gitalk-container"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -495,6 +496,26 @@
   
 
   
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'f978c9ee37abd6255dce',
+      clientSecret: '1f5136a547d33080bd7dcdd76dec434135f911b3',
+      repo        : 'weiss00.github.io',
+      owner       : 'weiss00',
+      admin       : ['weiss00'],
+      id          : '0afc1cef5d7d8fc4f0410b491b86bc56',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 </body>
 </html>
