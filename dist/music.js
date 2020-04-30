@@ -30,7 +30,8 @@ var aplayers = [],
 				aplayers.push(new APlayer(d))
 			}
 		}
-		var b = 'https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r';
+		
+		var b = 'https://service-opb3o3ky-1251733603.gz.apigw.tencentcs.com/release/Meting?server=:server&type=:type&id=:id&r=:r';
 		'undefined' != typeof meting_api && (b = meting_api);
 		for (var f = 0; f < aplayers.length; f++) try {
 			aplayers[f].destroy()
