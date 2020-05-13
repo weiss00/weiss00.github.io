@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"91weiss.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="ES6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6学习笔记">
+<meta property="og:url" content="https://91weiss.com/2020/05/13/ES6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="Plums">
+<meta property="og:description" content="ES6">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-13T09:05:33.000Z">
+<meta property="article:modified_time" content="2020-05-13T09:07:46.142Z">
+<meta property="article:author" content="weiss">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="ES6">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://91weiss.com/2020/05/13/ES6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ES6学习笔记 | Plums</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <link rel="stylesheet" href="/dist/APlayer.min.css">
+  <link rel="stylesheet" href="/dist/self-aplayer.css">
+  <script src="/lib/Meting.js"></script> 
+  <div id="aplayer" class="aplayer" data-id="544730772" data-server="netease"
+  data-type="playlist" data-fixed="true" data-listfolded="true" data-order="list" data-theme="#1e8a5c"></div>
+  <script src="/dist/APlayer.min.js"></script>
+  <script src="/dist/music.js"></script> 
+ 
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Plums</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一人で梅を食べたい</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">13</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://91weiss.com/2020/05/13/ES6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/guanxi.jpg">
+      <meta itemprop="name" content="weiss">
+      <meta itemprop="description" content="一个从来都觉得如此的著名划水运动员。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Plums">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ES6学习笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-13 17:05:33 / 修改时间：17:07:46" itemprop="dateCreated datePublished" datetime="2020-05-13T17:05:33+08:00">2020-05-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">前端学习</span></a>
+                </span>
+            </span>
+	   
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="ES6"><a href="#ES6" class="headerlink" title="ES6"></a>ES6</h2><a id="more"></a>
+
+
+
+<h3 id="JavaScript与ES6关系"><a href="#JavaScript与ES6关系" class="headerlink" title="JavaScript与ES6关系"></a>JavaScript与ES6关系</h3><ul>
+<li>ES6是一种规范标准</li>
+<li>JavaScript则是该标准的实现</li>
+</ul>
+<hr>
+<h3 id="Let"><a href="#Let" class="headerlink" title="Let"></a>Let</h3><ul>
+<li>let只作用于当前块级作用域内</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(a);  <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">console</span>.log(b);  <span class="comment">// ReferenceError: b is not defined</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">1</span>;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(a); <span class="comment">// 1</span></span><br><span class="line">        <span class="keyword">let</span> b = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(b);  <span class="comment">// ReferenceError: b is not defined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>使用let或者const声明的变量 不能在被重新声明</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> msg = <span class="string">"EN??"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(msg);  <span class="comment">// EN??</span></span><br><span class="line"><span class="keyword">var</span> msg;</span><br><span class="line"><span class="built_in">console</span>.log(msg);  <span class="comment">// EN??</span></span><br><span class="line">----------------------------------------------------------------------------------</span><br><span class="line"><span class="keyword">let</span> msg = <span class="string">"EN??"</span>;</span><br><span class="line"><span class="built_in">console</span>.log(msg);</span><br><span class="line"><span class="keyword">let</span> msg;</span><br><span class="line"><span class="built_in">console</span>.log(msg); </span><br><span class="line"></span><br><span class="line"><span class="comment">//let msg;</span></span><br><span class="line"><span class="comment">//    ^</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">//SyntaxError: Identifier 'msg' has already been declared</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>question: 生成十个按钮， 每个按钮点击的时候弹出 1 ~ 10</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// var 版本</span></span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt;= <span class="number">10</span>;i++)&#123;</span><br><span class="line">        (<span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> btn = <span class="built_in">document</span>.createElement(<span class="string">'button'</span>);</span><br><span class="line">            btn.innerHTML = i;</span><br><span class="line">            btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                alert(i);</span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="built_in">document</span>.body.appendChild(btn);</span><br><span class="line">        &#125;)(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// let版本</span></span><br><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">let</span> btn = <span class="built_in">document</span>.createElement(<span class="string">'button'</span>);</span><br><span class="line">        btn.innerHTML = i;</span><br><span class="line">        btn.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            alert(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(btn);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="const"><a href="#const" class="headerlink" title="const"></a>const</h3><ul>
+<li>修饰常量的关键字</li>
+<li>常量不可被修改  否则报 TypeError: Assignment to constant variable.  错误</li>
+<li>常量必须在声明的时候赋值  否则报  Missing initializer in const declaration  错误</li>
+<li>常量为引用类型(Object， Array….)的时候， 可以修改该引用类型</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">    name : <span class="string">'小明'</span>,</span><br><span class="line">    age : <span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// &#123; name: '小明', age: 18 &#125;</span></span><br><span class="line">person.age = <span class="number">23</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// &#123; name: '小明', age: 23 &#125;</span></span><br><span class="line"><span class="comment">// person = &#123;&#125;;  TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line">arr.push(<span class="number">123</span>);</span><br><span class="line"><span class="built_in">console</span>.log(arr);  <span class="comment">// [123]</span></span><br><span class="line"><span class="comment">// arr = &#123;&#125;; TypeError: Assignment to constant variable.</span></span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><p>那么问题来了  怎样防止常量为引用类型的时候能被修改的情况</p>
+<ul>
+<li>使用 Object.freeze() 方法后  该引用类型  无法被修改， 也无法被扩展</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">    name : <span class="string">'小明'</span>,</span><br><span class="line">    age : <span class="number">18</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Object</span>.freeze(person);</span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// &#123; name: '小明', age: 18 &#125;</span></span><br><span class="line">person.age = <span class="number">23</span>; </span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// &#123; name: '小明', age: 18 &#125;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [];</span><br><span class="line"><span class="built_in">Object</span>.freeze(arr);</span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br><span class="line">arr.push(<span class="number">123</span>);  <span class="comment">// TypeError: Cannot add property 0, object is not extensible</span></span><br><span class="line"><span class="built_in">console</span>.log(arr);</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="模板字符串"><a href="#模板字符串" class="headerlink" title="模板字符串"></a>模板字符串</h3><ul>
+<li>反引号  <code>``</code>    </li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> aoliao = &#123;</span><br><span class="line">    name : <span class="string">'奥利给'</span>,</span><br><span class="line">    age : <span class="number">32</span>,</span><br><span class="line">    say1 : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'My name is '</span> + <span class="keyword">this</span>.name + <span class="string">', age is '</span> + <span class="keyword">this</span>.age);</span><br><span class="line">    &#125;,</span><br><span class="line">    say2 : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`My name is <span class="subst">$&#123; <span class="keyword">this</span>.name &#125;</span>, age is <span class="subst">$&#123; <span class="keyword">this</span>.age &#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">aoliao.say1();  <span class="comment">// My name is 奥利给, age is 32</span></span><br><span class="line">aoliao.say2();  <span class="comment">// My name is 奥利给, age is 32   (模板字符串)</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 支持多行书写</span></span><br><span class="line"><span class="comment">// 支持模板嵌套</span></span><br><span class="line"><span class="comment">// 支持模板中利用函数传值</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"><span class="string">	&lt;li&gt;</span></span><br><span class="line"><span class="string">		&lt;span&gt;<span class="subst">$&#123; <span class="string">`标题： <span class="subst">$&#123; title &#125;</span>`</span> &#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">		&lt;span&gt;<span class="subst">$&#123; getName(id) &#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">		&lt;span&gt;<span class="subst">$&#123; age &#125;</span>&lt;/span&gt;</span></span><br><span class="line"><span class="string">	&lt;/li&gt;</span></span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="字符串部分新方法"><a href="#字符串部分新方法" class="headerlink" title="字符串部分新方法"></a>字符串部分新方法</h3><ul>
+<li><p>padStart、 padEnd</p>
+<ul>
+<li><p>padStart 向前补位</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  let str1 = str.padStart(几个字符,'不足用什么补全')</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> str = <span class="string">'h'</span>;</span><br><span class="line">    <span class="keyword">let</span> str1 = str.padStart(<span class="number">5</span>, <span class="string">'ello'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(str1);  <span class="comment">// elloh</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>padEnd 向后补位</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//   let str1 = str.padEnd(几个字符,'不足用什么补全')</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> str = <span class="string">'h'</span>;</span><br><span class="line">    <span class="keyword">let</span> str1 = str.padEnd(<span class="number">5</span>,<span class="string">'ello'</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(str1);  <span class="comment">// hello</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+</li>
+<li><p>repeat  复制</p>
+<ul>
+<li>不要传入负数， 传入小数一律取整</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="keyword">let</span> str = <span class="string">"oh"</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(str.repeat(<span class="number">10</span>));</span><br><span class="line">    <span class="comment">// ohohohohohohohohohoh</span></span><br><span class="line">&#125;</span><br><span class="line">--------------------------------------------------</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">repeat</span>(<span class="params">str, num</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Array</span>(num+<span class="number">1</span>).join(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+</li>
+<li><p>startsWith、 endsWith</p>
+<ul>
+<li>startsWith 查询以XXX开头</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'hello world'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.startsWith(<span class="string">'kk'</span>)); <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(str.startsWith(<span class="string">'h'</span>)); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>endsWith 查询以XXX结尾</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">'hello world'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(str.endsWith(<span class="string">'aa'</span>));  <span class="comment">// false</span></span><br><span class="line"><span class="built_in">console</span>.log(str.endsWith(<span class="string">'ld'</span>));  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+</li>
+<li><p>includes</p>
+<ul>
+<li>判断是否存在某个字符串</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 效果相同</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">const</span> str = <span class="string">'Hello WOrld'</span>;</span><br><span class="line">    <span class="keyword">if</span>(str.indexOf(<span class="string">'Hello'</span>) !== <span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'存在该字符串'</span>); <span class="comment">// 存在该字符串</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(str.includes(<span class="string">'Hello'</span>))&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'存在该字符串'</span>); <span class="comment">// 存在该字符串</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+</li>
+</ul>
+<p><em>未完待续</em></p>
+
+    </div>
+
+    
+    
+    
+   <div>
+     
+       <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+     
+    </div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+              <a href="/tags/ES6/" rel="tag"><i class="fa fa-tag"></i> ES6</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%B8%8E%E5%93%8D%E5%BA%94%E5%BC%8F/" rel="prev" title="移动端与响应式">
+      <i class="fa fa-chevron-left"></i> 移动端与响应式
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6"><span class="nav-number">1.</span> <span class="nav-text">ES6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript与ES6关系"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript与ES6关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Let"><span class="nav-number">1.2.</span> <span class="nav-text">Let</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#const"><span class="nav-number">1.3.</span> <span class="nav-text">const</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板字符串"><span class="nav-number">1.4.</span> <span class="nav-text">模板字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串部分新方法"><span class="nav-number">1.5.</span> <span class="nav-text">字符串部分新方法</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="weiss"
+      src="/images/guanxi.jpg">
+  <p class="site-author-name" itemprop="name">weiss</p>
+  <div class="site-description" itemprop="description">一个从来都觉得如此的著名划水运动员。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="powered-by">
+   <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+   本站访客数:&nbsp;&nbsp;<span id="busuanzi_value_site_uv"></span>
+   </span>
+</div>
+
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">weiss</span>
+</div>
+  <div class="powered-by">
+    <!--由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动 -->
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'f978c9ee37abd6255dce',
+      clientSecret: '1f5136a547d33080bd7dcdd76dec434135f911b3',
+      repo        : 'weiss00.github.io',
+      owner       : 'weiss00',
+      admin       : ['weiss00'],
+      id          : 'd190da3eebd4e06a49274b39def995e5',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
