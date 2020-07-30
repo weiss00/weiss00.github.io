@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/themes/blue/pace-theme-minimal.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"91weiss.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="———-more————– 性能测试 性能测试技能树 开发语言（Java）  操作系统 （Linux）  基本操作 监控命令 通过监控反馈的信息，得到信息   数据库（mysql）  CRUD 监控数据库 通过监控数据库的反馈，得到信息 数据库调优   测试工具（Jmeter | LoadRunner）  网络知识  业务知识    性能测试的目的 发现性能瓶颈   性能测试的分类 负载测试：通过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="性能测试">
+<meta property="og:url" content="https://91weiss.com/2020/07/24/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="Plums">
+<meta property="og:description" content="———-more————– 性能测试 性能测试技能树 开发语言（Java）  操作系统 （Linux）  基本操作 监控命令 通过监控反馈的信息，得到信息   数据库（mysql）  CRUD 监控数据库 通过监控数据库的反馈，得到信息 数据库调优   测试工具（Jmeter | LoadRunner）  网络知识  业务知识    性能测试的目的 发现性能瓶颈   性能测试的分类 负载测试：通过">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-24T08:44:09.000Z">
+<meta property="article:modified_time" content="2020-07-30T08:22:00.980Z">
+<meta property="article:author" content="weiss">
+<meta property="article:tag" content="性能测试，JMeter">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://91weiss.com/2020/07/24/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>性能测试 | Plums</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <link rel="stylesheet" href="/dist/APlayer.min.css">
+  <link rel="stylesheet" href="/dist/self-aplayer.css">
+  <script src="/lib/Meting.js"></script> 
+  <div id="aplayer" class="aplayer" data-id="544730772" data-server="netease"
+  data-type="playlist" data-fixed="true" data-listfolded="true" data-order="list" data-theme="#1e8a5c"></div>
+  <script src="/dist/APlayer.min.js"></script>
+  <script src="/dist/music.js"></script> 
+ 
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Plums</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">一人で梅を食べたい</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">15</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://91weiss.com/2020/07/24/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/guanxi.jpg">
+      <meta itemprop="name" content="weiss">
+      <meta itemprop="description" content="一个从来都觉得如此的著名划水运动员。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Plums">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          性能测试
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-24 16:44:09" itemprop="dateCreated datePublished" datetime="2020-07-24T16:44:09+08:00">2020-07-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-30 16:22:00" itemprop="dateModified" datetime="2020-07-30T16:22:00+08:00">2020-07-30</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index"><span itemprop="name">性能测试</span></a>
+                </span>
+            </span>
+	   
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>———-more————–</p>
+<h3 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h3><hr>
+<h4 id="性能测试技能树"><a href="#性能测试技能树" class="headerlink" title="性能测试技能树"></a>性能测试技能树</h4><ul>
+<li><p>开发语言（Java）</p>
+</li>
+<li><p>操作系统 （Linux）</p>
+<ul>
+<li>基本操作</li>
+<li>监控命令</li>
+<li>通过监控反馈的信息，得到信息</li>
+</ul>
+</li>
+<li><p>数据库（mysql）</p>
+<ul>
+<li>CRUD</li>
+<li>监控数据库</li>
+<li>通过监控数据库的反馈，得到信息</li>
+<li>数据库调优</li>
+</ul>
+</li>
+<li><p>测试工具（Jmeter | LoadRunner）</p>
+</li>
+<li><p>网络知识</p>
+</li>
+<li><p>业务知识</p>
+</li>
+</ul>
+<hr>
+<h4 id="性能测试的目的"><a href="#性能测试的目的" class="headerlink" title="性能测试的目的"></a>性能测试的目的</h4><ul>
+<li>发现性能瓶颈</li>
+</ul>
+<hr>
+<h4 id="性能测试的分类"><a href="#性能测试的分类" class="headerlink" title="性能测试的分类"></a>性能测试的分类</h4><ul>
+<li>负载测试：通过逐步加压的方法，达到既定的性能阈值的目标。阈值的设定应小于等于某个值，如CPU使用率小于等于80%。</li>
+<li>压力测试：通过逐步加压的方法，使得系统的某些资源达到饱和，甚至失效的状态，简单粗暴的解释就是什么条件下能把系统压崩溃。</li>
+<li>并发测试：在同一时间，多个虚拟用户同时访问同一模块、同一功能，通常的测试方法是设置集合点。</li>
+<li>容量测试：通常指数据库层面的，目标是获取数据库的最佳容量的能力。又称之为容量预估。具体测试方法位在一定的并发用户，不同的基础数据量下，观察数据库的处理能力。即获取数据库的各项性能指标。</li>
+<li>可靠性测试：又称之为稳定性测试或疲劳测试。是指系统在高压情况下，长时间的运行系统是否稳定。如cpu使用率在80%以上，7*24小时运行，系统是否稳定。  （内存泄漏）</li>
+<li>异常测试：又称之为失败测试。是指系统架构方面的测试。如在负载均衡架构中，要测试宕机、节点挂掉等情况系统的反应。</li>
+</ul>
+<hr>
+<h4 id="性能测试的工作流程"><a href="#性能测试的工作流程" class="headerlink" title="性能测试的工作流程"></a>性能测试的工作流程</h4><ul>
+<li>需求分析 &gt; 性能指标制定 &gt; 脚本开发 &gt; 场景设置 &gt; 监控部署 &gt; 测试执行 &gt; 性能分析 &gt; 性能调优 &gt; 测试报告</li>
+</ul>
+<hr>
+<h4 id="性能测试指标定义"><a href="#性能测试指标定义" class="headerlink" title="性能测试指标定义"></a>性能测试指标定义</h4><ul>
+<li>事务<ul>
+<li>从客户端发起的一个或多个请求（这些请求组成一个完整的操作），到客户端接收到从服务器返回的响应。</li>
+</ul>
+</li>
+<li>TPS<ul>
+<li>每秒种系统能够处理的事务数</li>
+</ul>
+</li>
+<li>请求响应时间 <ul>
+<li>从客户端发起的一个请求开始，到客户端接收到从服务器返回的响应。整个过程所耗费的时间。</li>
+</ul>
+</li>
+<li>事务响应时间<ul>
+<li>事务可能是由一个或多个请求组成的，事务响应时间主要是针对于用户的角度而言，如转账。</li>
+</ul>
+</li>
+<li>并发定义<ul>
+<li>没有严格意义上的并发。并发总有先后，无论差距是1毫秒或者是1微秒，总是有一个时间差。所以并发讲的是一个时间范围内，比如1秒内。</li>
+<li>例如：<ul>
+<li>多用户在系统上进行同一操作，比如双十一，大家都针对同一种商品进行秒杀。</li>
+<li>多用户在系统上进行不同操作，比如双十一时，大家针对不同的商品进行秒杀，或者是大家有进行其它不同的操作，不如商品浏览。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>并发用户数<ul>
+<li>同一单位时间内对系统发起请求的用户数量</li>
+</ul>
+</li>
+<li>吞吐量<ul>
+<li>一次性能测试过程中网络上传输的数据量的总和</li>
+</ul>
+</li>
+<li>吞吐率<ul>
+<li>单位时间内网络上传输的数据量</li>
+<li>吞吐率 = 吞吐量  /  传输时间</li>
+</ul>
+</li>
+<li>点击率<ul>
+<li>每秒钟用户向服务器提交的请求数。这个指标是web应用程序特有的一个指标，可以想象为每秒钟用户总共在页面上进行多少次点击动作，但是需要注意的是一次鼠标点击的操作后，客户端有可能向服务器发送了多次请求。</li>
+</ul>
+</li>
+<li>资源使用率<ul>
+<li>对不同系统资源的使用情况，如cpu、内存、IO</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="性能测试的需求分析"><a href="#性能测试的需求分析" class="headerlink" title="性能测试的需求分析"></a>性能测试的需求分析</h4><ul>
+<li>分析目的<ul>
+<li>明确测试指标</li>
+<li>明确测试场景</li>
+</ul>
+</li>
+<li>新系统<ul>
+<li>同行业比较</li>
+<li>业务预期</li>
+</ul>
+</li>
+<li>老系统<ul>
+<li>对比以往的用户使用行为以及用户量</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="性能测试工具"><a href="#性能测试工具" class="headerlink" title="性能测试工具"></a>性能测试工具</h4><ul>
+<li>常用工具 LoadRunner  JMeter</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>对比维度</th>
+<th>LoadRunner</th>
+<th>JMeter</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>量级</td>
+<td>重</td>
+<td>轻</td>
+</tr>
+<tr>
+<td>易用性</td>
+<td>易</td>
+<td>易</td>
+</tr>
+<tr>
+<td>是否开源</td>
+<td>否</td>
+<td>是</td>
+</tr>
+<tr>
+<td>语言支持</td>
+<td>C/java1.5</td>
+<td>java</td>
+</tr>
+<tr>
+<td>是否收费</td>
+<td>是</td>
+<td>否</td>
+</tr>
+</tbody></table>
+<hr>
+<h4 id="服务器性能测试范围"><a href="#服务器性能测试范围" class="headerlink" title="服务器性能测试范围"></a>服务器性能测试范围</h4><ul>
+<li>测试范围及性能指标<ul>
+<li>CPU</li>
+<li>内存</li>
+<li>磁盘</li>
+<li>网络</li>
+<li>版本  （操作系统版本  centos 6.5  - coentos 7）</li>
+</ul>
+</li>
+<li>测试与生产环境配置不同<ul>
+<li>通过多次压测来计算性能损耗<ul>
+<li>性能损耗的计算方式： 多次压测后的性能预估</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="Linux帮助命令"><a href="#Linux帮助命令" class="headerlink" title="Linux帮助命令"></a>Linux帮助命令</h4><ul>
+<li>实时监控 top<ul>
+<li>top：能够实时监控系统的运行状态，并且可以按照cpu以及内存等进行排序。语法：top -hv | -bcHiOSs -d secs -n max -u |Uuser -p pid(s) -o field -w [cols]</li>
+<li>load average : 系统的运行队列的平均利用率，也可以认为是可运行进程的平均数。三个值分别表示在最后1分钟、5分钟、15分钟的平均负载值。</li>
+<li>在单核cpu中load average的值为1时表示满负荷状态。同理在多核cpu中满负载的load average的值为1 * cpu核数。</li>
+</ul>
+</li>
+<li>vmstat<ul>
+<li>可以监控操作系统的进程状态、内存、虚拟内存、磁盘IO、CPU的信息。语法：vmstat [-a] [-n] [-S unit] [delay [count]]</li>
+</ul>
+</li>
+<li>实时监控 - 内存 free<ul>
+<li>能够监控系统的内存使用状态。其中，total：总计物理内存的大小；Used：已使用多大；Free：可用多少；shared：多个进程共享的内存总额；buffers/cached：磁盘缓存的大小。</li>
+</ul>
+</li>
+<li>实时监控 - CPU   mpstat<ul>
+<li>mpstat最大的特点是：可以查看多核心cpu中每个计算核心的统计数据。 mpstat [-P {|ALL}] [inertnal [count]]</li>
+<li>当没有参数的时候，mpstat则显示系统启动以后所有信息的平均值。有iterval时，第一行的信息自系统启动以来的平均信息。从第二行开始，输出为前一个interval时间段的平均信息。</li>
+<li>-P {|ALL} 表示监控哪个cpu，CPU在[0, cpu个数 - 1]中取值</li>
+<li>internal 相邻的两次采样的间隔时间</li>
+<li>count 采样的次数</li>
+</ul>
+</li>
+<li>实时监控 - 网络  netstat<ul>
+<li>-n : 拒绝显示别名，能显示数字的全部转化为数字。</li>
+<li>-l :仅列出有在Listen（监听）的服务状态</li>
+<li>-p : 显示建立相关链接的程序名</li>
+<li>-t (tcp) : 显示tcp相关选项</li>
+<li>-u (udp) : 仅显示udp相关选项</li>
+<li>-i： 显示自动匹配接口信息</li>
+<li>-c： 每隔一个固定时间，执行该netstat命令</li>
+<li>用法：  <ul>
+<li>用于检查某个端口是否被监听   netstat -ntlp</li>
+<li>用于查看网络相关的：  netstat -i</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实时监控 - 磁盘 iostat<ul>
+<li>-x device  输出指定要统计的磁盘设备名称，默认为所有磁盘设备。</li>
+</ul>
+</li>
+<li>万能命令   sar<ul>
+<li>sar的性能监控范围<ul>
+<li>文件的读写情况，系统调用的使用情况，磁盘I/O、CPU效率、内存使用状况、进程活动及IPC有关的活动。</li>
+</ul>
+</li>
+<li>sar 语法说明<ul>
+<li>在命令行中，n和t两个参数组合起来定义采样间隔和次数，t为采样间隔，是必须有的参数，n为采样次数，是可选的，默认值是1，-o file表示将命令结果以二进制格式存放在文件中，file在此处不是关键字，是文件名。options为命令行选项。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="Linux下的进程追踪"><a href="#Linux下的进程追踪" class="headerlink" title="Linux下的进程追踪"></a>Linux下的进程追踪</h4><ul>
+<li>strace简介<ul>
+<li>strace命令是一个集诊断、调试、统计于一体的工具，我们可以使用strace对应用的系统调用和信号传递的跟踪结果来对应用进行分析，已达到解决问题或者是了解应用工作过程的目的。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="Linux监控工具"><a href="#Linux监控工具" class="headerlink" title="Linux监控工具"></a>Linux监控工具</h4><ul>
+<li>nmon<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+   <div>
+     
+       <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+     
+    </div>
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%EF%BC%8CJMeter/" rel="tag"><i class="fa fa-tag"></i> 性能测试，JMeter</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/18/CSS%E5%9C%A8%E7%BA%BF%E9%80%89%E6%8B%A9%E5%99%A8/" rel="prev" title="CSS在线选择器">
+      <i class="fa fa-chevron-left"></i> CSS在线选择器
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#性能测试"><span class="nav-number">1.</span> <span class="nav-text">性能测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#性能测试技能树"><span class="nav-number">1.1.</span> <span class="nav-text">性能测试技能树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能测试的目的"><span class="nav-number">1.2.</span> <span class="nav-text">性能测试的目的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能测试的分类"><span class="nav-number">1.3.</span> <span class="nav-text">性能测试的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能测试的工作流程"><span class="nav-number">1.4.</span> <span class="nav-text">性能测试的工作流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能测试指标定义"><span class="nav-number">1.5.</span> <span class="nav-text">性能测试指标定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能测试的需求分析"><span class="nav-number">1.6.</span> <span class="nav-text">性能测试的需求分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能测试工具"><span class="nav-number">1.7.</span> <span class="nav-text">性能测试工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器性能测试范围"><span class="nav-number">1.8.</span> <span class="nav-text">服务器性能测试范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux帮助命令"><span class="nav-number">1.9.</span> <span class="nav-text">Linux帮助命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux下的进程追踪"><span class="nav-number">1.10.</span> <span class="nav-text">Linux下的进程追踪</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Linux监控工具"><span class="nav-number">1.11.</span> <span class="nav-text">Linux监控工具</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="weiss"
+      src="/images/guanxi.jpg">
+  <p class="site-author-name" itemprop="name">weiss</p>
+  <div class="site-description" itemprop="description">一个从来都觉得如此的著名划水运动员。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="powered-by">
+   <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+   本站访客数:&nbsp;&nbsp;<span id="busuanzi_value_site_uv"></span>
+   </span>
+</div>
+
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">weiss</span>
+</div>
+  <div class="powered-by">
+    <!--由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动 -->
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : 'f978c9ee37abd6255dce',
+      clientSecret: '1f5136a547d33080bd7dcdd76dec434135f911b3',
+      repo        : 'weiss00.github.io',
+      owner       : 'weiss00',
+      admin       : ['weiss00'],
+      id          : '2015a7db29bfb9b83d858b661f59d190',
+        language: '',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
